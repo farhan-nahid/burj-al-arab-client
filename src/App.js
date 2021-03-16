@@ -1,17 +1,22 @@
 import React, { createContext, useState } from 'react';
-import './App.css';
 import {
   BrowserRouter as Router,
-  Switch,
-  Route
+
+  Route, Switch
 } from "react-router-dom";
-import Home from './components/Home/Home';
-import Login from './components/Login/Login';
+import './App.css';
 import Book from './components/Book/Book';
 import Header from './components/Header/Header';
+import Home from './components/Home/Home';
+import Login from './components/Login/Login';
+
+export const userContext = createContext()
 
 function App() {
+  const [loggedInUser, setLoggedInUser] = useState({})
   return (
+    <userContext.Provider value={ [loggedInUser, setLoggedInUser] }>
+      <p>{loggedInUser.name}</p>
       <Router>
           <Header/>
           <Switch>
@@ -29,6 +34,7 @@ function App() {
             </Route>
           </Switch>
       </Router>
+      </userContext.Provider >
   );
 }
 

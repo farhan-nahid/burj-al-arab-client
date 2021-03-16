@@ -1,12 +1,48 @@
-import React, { useContext } from 'react';
+import { Button } from "@material-ui/core";
+import firebase from "firebase/app";
+import "firebase/auth";
+import React, { useContext } from "react";
+import { userContext } from '../../App';
+import { firebaseConfig } from "./firebase.config";
 
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+} else {
+  firebase.app(); // if already initialized, use that one
+}
 
 const Login = () => {
-    return (
-        <div>
-            <h1>This is Login</h1>
-        </div>
-    );
+    const [loggedInUser, setLoggedInUser] = useContext(userContext)
+  const handelGoogleSignIn = () => {
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
+    firebase
+      .auth()
+      .signInWithPopup(googleProvider)
+      .then((result) => {
+        const {displayName , email} = result.user;
+        const SignedInUser = {"Name": displayName, email }
+        setLoggedInUser (SignedInUser)
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.email;
+        const credential = error.credential;
+        console.log(errorCode, errorMessage, email, credential);
+        // ...
+      });
+  };
+
+
+  return (
+    <div>
+      <h1>This is Login</h1>
+      <Button  onClick={handelGoogleSignIn}  variant="contained"  color="secondary"  >  
+      Sign In With Google
+       </Button>
+    </div>
+  );
 };
 
 export default Login;
