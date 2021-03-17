@@ -3,8 +3,8 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import React, { useContext } from "react";
 import { useHistory, useLocation } from "react-router";
+import { firebaseConfig } from "../../../firebase.config";
 import { userContext } from '../../App';
-import { firebaseConfig } from "./firebase.config";
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
