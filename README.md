@@ -1,2 +1,2 @@
 
-### burj-al-arob-clint
+### burj-al-arob-client
