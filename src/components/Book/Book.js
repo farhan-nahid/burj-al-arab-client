@@ -2,12 +2,13 @@ import DateFnsUtils from "@date-io/date-fns";
 import { Button } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import {
-    KeyboardDatePicker,
-    MuiPickersUtilsProvider
+  KeyboardDatePicker,
+  MuiPickersUtilsProvider
 } from "@material-ui/pickers";
 import React, { useContext, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { userContext } from "../../App";
+import Bookings from "../Bookings/Bookings";
 
 const Book = () => {
   const [loggedInUser, setLoggedInUser] = useContext(userContext);
@@ -83,6 +84,7 @@ const Book = () => {
         </Grid>
         <Button  onClick={handelBooking} variant="contained" color="primary"> Book Now</Button>
       </MuiPickersUtilsProvider>
+      <Bookings />
     </div>
   );
 };

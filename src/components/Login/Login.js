@@ -25,7 +25,7 @@ const Login = () => {
       .signInWithPopup(googleProvider)
       .then((result) => {
         const {displayName , email} = result.user;
-        const SignedInUser = {name : displayName, email }
+        const SignedInUser = {name : displayName, email:email }
         setLoggedInUser (SignedInUser)
         history.replace(from)
         // ...
