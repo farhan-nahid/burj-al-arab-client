@@ -9,7 +9,7 @@ const Bookings = () => {
      const [loggedInUser, setLoggedInUser] = useContext(userContext);
     // console.log(loggedInUser.email);
     useEffect(()=>{
-        fetch('http://localhost:5000/bookings?email='+loggedInUser.email , {
+        fetch('https://damp-depths-22471.herokuapp.com/bookings?email='+loggedInUser.email , {
             method : 'GET',
             headers : {
                 'Content-Type': 'application/json',
